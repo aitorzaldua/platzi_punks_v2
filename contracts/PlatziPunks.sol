@@ -23,6 +23,33 @@ contract PlatziPunks is ERC721, ERC721Enumerable {
         _safeMint(msg.sender, current);
     }
 
+    //Implementar tokenURI para la creacion del ADN
+    function tokenURI(uint256 tokenId)
+        public
+        view
+        override
+        returns (string memory)
+        {
+            require(
+                _exists(tokenId),
+                "ERC721 Metadata: URI query for nonexistent token"
+            );
+
+        string memory jsonURI = string(
+		abi.encodePacked(
+				'{ "name": "PlatziPunks #',
+				tokenId, //esto puede ser número o usar una utils to_string() de OZ
+				'", "description": "PlatziPunks is a random avatar"',
+				"//PDTE: metadatos de la imagen",
+				'"}'
+            )
+        );
+
+        return jsonURI
+
+
+    }
+
     //Override required
     function _beforeTokenTransfer(address from, address to, uint256 tokenId)
         internal
