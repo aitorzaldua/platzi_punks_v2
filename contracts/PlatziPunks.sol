@@ -3,12 +3,24 @@ pragma solidity ^0.8.0; //v. actual de openzeppelin
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract PlatziPunks is ERC721, ERC721Enumerable {
-    constructor() ERC721("PlatziPunks", "PLPKS") {}
+    using Counters for Counters.Counter;
+
+    Counters.Counter private _idCounter;
+
+    uint256 public maxSupply;
+
+    constructor(uint256 _maxSupply) ERC721("PlatziPunks", "PLPKS") {
+        maxSupply = _maxSupply;
+    }
 
     function mint() public {
-        _safeMint(msg.sender, tokenId);
+        uint256 current = _idCounter.current();
+        _idCounter.increment();
+        require(current < maxSupply, "No PlatziPunks left, sorry! :(");
+        _safeMint(msg.sender, current);
     }
 
     //Override required
