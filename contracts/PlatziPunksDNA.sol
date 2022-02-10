@@ -247,19 +247,19 @@ contract PlatziPunksDNA {
     //es public, ya que debe llamarse desde el portal
     //view ya que es solo de consulta
     //return el string con el dato
-    function _getAccesoriesType(uint8 _dna)
+    function getAccessoriesType(uint256 _dna)
         public
         view
         returns(string memory)
     {
-        uint8 dnaSection  = _getDNASection(_dna, 0);
+        uint256 dnaSection  = _getDNASection(_dna, 0);
         return _accessoriesType[dnaSection % _accessoriesType.length];
 
     }
 
     //Se crean el resto de funciones
-    function _getClotheColor(uint8 _dna) public view returns (string memory) {
-        uint8 dnaSection = _getDNASection(_dna, 2);
+    function getClotheColor(uint256 _dna) public view returns (string memory) {
+        uint256 dnaSection = _getDNASection(_dna, 2);
         return _clotheColor[dnaSection % _clotheColor.length];
     }
 
