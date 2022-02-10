@@ -4,14 +4,19 @@ pragma solidity ^0.8.0; //v. actual de openzeppelin
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
-import "./Base64";
+import "./Base64.sol";
+import "./PlatziPunksDNA.sol";
 
-contract PlatziPunks is ERC721, ERC721Enumerable {
+
+
+contract PlatziPunks is ERC721, ERC721Enumerable, PlatziPunksDNA {
     using Counters for Counters.Counter;
 
     Counters.Counter private _idCounter;
 
     uint256 public maxSupply;
+
+    mapping (uint256 => uint256) public tokenDNA;
 
     constructor(uint256 _maxSupply) ERC721("PlatziPunks", "PLPKS") {
         maxSupply = _maxSupply;
@@ -21,6 +26,9 @@ contract PlatziPunks is ERC721, ERC721Enumerable {
         uint256 current = _idCounter.current();
         _idCounter.increment();
         require(current < maxSupply, "No PlatziPunks left, sorry! :(");
+
+        //añadimos dna:
+        tokenDNA[current] = deterministicPseudoRandomDNA(current, msg.sender);
         _safeMint(msg.sender, current);
     }
 
