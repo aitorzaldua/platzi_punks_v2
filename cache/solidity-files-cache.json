@@ -37,8 +37,8 @@
       ]
     },
     "/Users/aitor/ethereum/platzi_punks_v2/contracts/PlatziPunks.sol": {
-      "lastModificationDate": 1644497845826,
-      "contentHash": "b36c0d365a8dd160f5fcaa6825a805e2",
+      "lastModificationDate": 1644579237921,
+      "contentHash": "66d13593e38f37a442ad451a23220037",
       "sourceName": "contracts/PlatziPunks.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -67,6 +67,7 @@
         "@openzeppelin/contracts/token/ERC721/ERC721.sol",
         "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol",
         "@openzeppelin/contracts/utils/Counters.sol",
+        "@openzeppelin/contracts/utils/Strings.sol",
         "./Base64.sol",
         "./PlatziPunksDNA.sol"
       ],

@@ -8,7 +8,7 @@ const deploy = async () => {
 
     //Se crea la instancia del contrato desplegado
     const Platzi_Punks = await ethers.getContractFactory("PlatziPunks");
-    const deployed = await Platzi_Punks.deploy();
+    const deployed = await Platzi_Punks.deploy(10000);
 
     console.log("Platzi Punks deployed at: ", deployed.address);
 }
